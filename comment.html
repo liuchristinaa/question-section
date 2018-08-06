@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="CSS/commentsStyle.css">
-    <link href="https://fonts.googleapis.com/css?family=Special+Elite|Khand|Meddon|Open+Sans+Condensed:300|Pathway+Gothic+One|Special+Elite" rel="stylesheet">
+   
     <meta charset="UTF-8" />
     <div id="google_translate_element"></div>
+      <style>
+          body {
+              background color: DarkGrey;
+      </style>      
     <script>
           function googleTranslateElementInit() {
               new google.translate.TranslateElement(
@@ -17,32 +20,7 @@
 
   <head>
   <body>
-    <h1 id="unified">unified</h1>
-    <header id="pageTitle">questions</header>
-      <div class="navbar"><center>
-        <a id="home" href="UnitedHome.html">HOME</a>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <a id="rights" href="rights.html">RIGHTS</a>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <a id="agencies" href="agencies.html">AGENCIES</a>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <a id="citizenship" href="citizenship.html">CITIZENSHIP</a>
-       &nbsp;
-       &nbsp;
-       &nbsp;
-       <div class="dropdown">
-      <button class="dropbtn">MORE</button>
-       <div class="dropdown-content">
-        <a href="ICE.html">ICE</a>
-       </div>
-     </div>
-    </div>
+ 
     <h2 id="line">_________________________________________________________________</h2>
     <br>
     <br>
@@ -53,21 +31,39 @@
       <div><p id="para"></p></div>
     </form>
     <script type="text/javascript">
-      document.getElementById("para").innerHTML = localStorage.getItem("questionList")
+     
       var allQuestions = []
+      if (localStorage.getItem("questionList") != null ){
+      var all = JSON.parse(localStorage.getItem("questionList"));
+        }
+      
+       console.log(all);
+      console.log(localStorage.getItem("questionList"));
+        
+      if (all != undefined ) { 
+          for (x in all) { 
+            
+         document.getElementById("para").innerHTML +=  all[x]; 
+          }
+      }
+        
       function getwords() {
         text = words.value;
         allQuestions.push(text)
+        if (all != undefined) { 
+           for (x in all) { 
+            allQuestions.push(all[x])
+           }}
         console.log(allQuestions);
-        console.log(1);
+          document.getElementById("para").innerHTML += text
+            
+       
         localStorage.setItem("questionList", JSON.stringify(allQuestions));
-        document.getElementById("para").innerHTML += text
-        document.getElementById("words").value = "Type your question here"
-
-
-
+       
+       
+          console.log(localStorage.getItem("questionList"));
+        document.getElementById("words").value = ""
       }
-
     </script>
 
     <br><br><br><br><br><br>
